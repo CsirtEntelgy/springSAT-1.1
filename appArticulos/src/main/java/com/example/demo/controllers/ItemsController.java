@@ -13,10 +13,14 @@ import com.example.demo.service.IArticuloService;
 @RestController
 public class ItemsController {
 	
-	@Autowired
-	private IArticuloService  articuloService;
+	@Autowired  IArticuloService  articuloService;
 	
-	@GetMapping("/listarITEMS")
+	@GetMapping("/entra")
+	public String rf() {
+		return "entro";
+	}
+	
+	@GetMapping("/listar")
 	public List<Items> listar(){
 		return articuloService.encuentraTodos();
 	}

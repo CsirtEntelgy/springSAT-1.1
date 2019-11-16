@@ -22,7 +22,7 @@ public class ArticuloServiceImpl implements IArticuloService {
 	@Override
 	public List<Items> encuentraTodos() {
       List<Producto> losProductos = Arrays.asList( clienteRest.getForObject("http://localhost:8001/listar",  Producto[].class));
-		return losProductos.stream().map(p->new Items(p , 1 ) ).collect(Collectors.toList());
+		return losProductos.stream().map(p -> new Items(p , 1 ) ).collect(Collectors.toList());
 	}
 
 	@Override

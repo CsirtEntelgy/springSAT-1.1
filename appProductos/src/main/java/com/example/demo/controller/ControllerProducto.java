@@ -24,5 +24,9 @@ public class ControllerProducto {
 	public Producto detalle(@PathVariable Long id) {
 		return interfazProducto.encuentraPorID(id);
 	}
+	@GetMapping("/entra")
+	public String rf() {
+		return "entro";
+	}
 	
 }
