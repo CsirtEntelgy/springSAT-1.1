@@ -1,4 +1,4 @@
-package com.example.demo.controllers;
+package com.example.demo.controller;
 
 import java.util.List;
 
@@ -25,10 +25,17 @@ public class ItemsController {
 		return articuloService.encuentraTodos();
 	}
 	
-	@GetMapping("/verID/{id}/cantidad/{cantidad} ")
+	/*
+	@GetMapping("/ver/{id}/cantidad/{cantidad} ")
 	public Items detalle(@PathVariable Long id, @PathVariable Integer cantidad) {
 		return articuloService.encuentraID(id, cantidad);
+	} */
+	
+	@GetMapping("/avanzada/{id}/cantidad/{cantidad}")
+	public Items detalles(@PathVariable Long id, @PathVariable Integer cantidad) {
+		return articuloService.encuentraID(id, cantidad);
 	}
+	
 	
 
 }
