@@ -13,7 +13,7 @@ import org.springframework.web.client.RestTemplate;
 import com.example.demo.models.Items;
 import com.example.demo.models.Producto;
 
-@Service
+@Service("articulo service")
 public class ArticuloServiceImpl implements IArticuloService {
 
 	@Autowired
@@ -31,6 +31,12 @@ public class ArticuloServiceImpl implements IArticuloService {
        pathVariables.put("id", id.toString());
        Producto productoClient = clienteRest.getForObject("http://localhost:8001/ver/{id}",Producto.class, pathVariables);
 		return new Items(productoClient,cantidad);
+	}
+
+	@Override
+	public String desdeFeignStr() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

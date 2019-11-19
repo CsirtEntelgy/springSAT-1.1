@@ -10,5 +10,8 @@ public interface IArticuloService {
 	
 	public Items encuentraID(Long id, Integer cantidad); 
 	
+	public String desdeFeignStr();
+	
+	
 
 }
