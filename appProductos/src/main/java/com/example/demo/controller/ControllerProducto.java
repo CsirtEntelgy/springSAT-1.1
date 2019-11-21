@@ -28,9 +28,21 @@ public class ControllerProducto {
 	}
 	
 	@GetMapping("/ver/{id}")
-	public Producto detalle(@PathVariable Long id) {
+	public Producto detalle(@PathVariable Long id) throws Exception {
 		Producto proId=interfazProducto.encuentraPorID(id);
 		proId.setPuerto(Integer.parseInt(amb.getProperty("local.server.port")) );
+		/*boolean flag=true;
+        if(flag) {
+        	throw new Exception ("ERROR DESDE SERVIDOR CONTROLADOR");
+        } */
+		
+		/*
+		try {   
+			Thread.sleep(1000L);		
+		}catch(InterruptedException e){
+			e.printStackTrace();
+		} */
+	
 		return proId;
 	}
 	

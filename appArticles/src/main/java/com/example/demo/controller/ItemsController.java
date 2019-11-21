@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.models.Items;
+import com.example.demo.models.Producto;
 import com.example.demo.service.IArticuloService;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 
 @RestController
 public class ItemsController {
@@ -29,9 +31,23 @@ public class ItemsController {
 	}
 	
 	
+	@HystrixCommand(fallbackMethod="metodoCircuito")
 	@GetMapping("/avanzada/{id}/cantidad/{cantidad}")
 	public Items detalles(@PathVariable Long id, @PathVariable Integer cantidad) {
 		return articuloService.encuentraID(id, cantidad);
+	}
+	
+	public Items metodoCircuito(Long id,  Integer cantidad) {
+		Items itemCirc= new Items();
+		Producto proCirc= new Producto();
+		
+		itemCirc.setCantidad(cantidad);
+		proCirc.setId(id);
+		proCirc.setNombre("RCA");
+		proCirc.setPrecio(220.0);
+		itemCirc.setProductosX(proCirc);
+		
+		return itemCirc;
 	}
 	
 	
