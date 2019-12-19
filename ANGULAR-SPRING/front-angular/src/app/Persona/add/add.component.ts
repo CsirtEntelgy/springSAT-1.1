@@ -13,15 +13,23 @@ export class AddComponent implements OnInit {
   persona:Persona[];
   constructor(private router:Router, private service:ServiceService) { }
 
+  model: Persona ={id:0 , name:'',apellidos:''}; 
+
   ngOnInit() {
   }
 
   Guardar(persona:Persona){   
-    this.service.createPersona(persona)
+    console.log(this.model);
+    this.service.createPersona(this.model)
     .subscribe(data=>{
       this.router.navigate(["listar"]);
     })
      alert("AÑADIDO A BASE");
   }
+  Guardar2(){
+    console.log(this.model);
+  }
+
+
 
 }
