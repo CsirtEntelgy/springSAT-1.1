@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +19,7 @@ import com.example.demo.models.Producto;
 import com.example.demo.service.IArticuloService;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 
+@RefreshScope
 @RestController
 public class ItemsController {
 	
@@ -25,7 +27,7 @@ public class ItemsController {
 	@Qualifier("servicioFeign")
 	private IArticuloService  articuloService;
 	
-	//@Value("${configuracion.texto}")
+	//@Value("${configuration.texto}")
 	//private String texto;
 	
 	@GetMapping("/entra")
@@ -58,7 +60,7 @@ public class ItemsController {
 		return itemCirc;
 	}
 	
-	@GetMapping("/obtener-config")
+	@GetMapping("/obtener")
 	public ResponseEntity<?> obtenerConfig(@Value("${server.port}") String puerto ){
 		Map<String,String> json=new HashMap<>();
 		//json.put("texto", texto);
